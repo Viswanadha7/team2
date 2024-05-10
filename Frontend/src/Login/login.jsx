@@ -1,65 +1,72 @@
-import React from 'react';
-import bg from '../Images/login_page.png';
-import '../Login/login.css';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "../Login/login.css";
+import bg from "../Login/bg.png";
+import arrow from "../Login/arrow.png";
+import { Link } from "react-router-dom";
 
 function login() {
-    console.log(bg);
-    return (
-        
-        <div className="login-container">
-            {/* <img src={bg} alt='bg' /> */}
-            <div className="overlay-contant">
-                <h1>Empowering Your Trades: Where <br /> Opportunities Meet Expertise</h1>
-                <p>Login</p>
-                <div className="form-container">
-                    <form>
-                        <label>
-                            E-mail
-                        </label>
-                        <div><input className="text" type="email" placeholder=' Enter Email' name='email' required /></div>
-                        <label>
-                            Password
-                        </label>
-                        <div><input className="text" type="password" placeholder=' Enter password' name='password' required /></div>
-
-                       <div class ="for-pass">
-
-                       <div class = "keepmein">
-                                <input type="checkbox" name="keepLoggedIn" />  
-                                <label for = "keepin"> 
-                                <span id = "keepme">Keep me logged in </span> </label>
-                            </div>
-
-                            <div class = "forgetpassword">
-                                {/* Use Link component instead of anchor tag */}
-                                <Link to="/forgetPassword" className="forgot-password">Forgot password?</Link>
-                            </div> 
-                            </div> 
-                            {/* <div class = "forgetpassword">
-                                <a href="/forgetPassword" className="forgot-password">Forgot password?</a>
-                            </div> 
-                            </div>  */}
-                        
-                        <button class="btn">Login</button>
-
-                        <div class = "donthaveacc">
-                            <div>
-                                <label for = "donthaveacc"> 
-                                <span id = "account">Dont have an account?  </span> </label>
-                            </div>
-
-                            <span class ="divsign">
-                                <a href="#" class="signup">Signup</a>
-                            </span>
-
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
+  return (
+    <div className="login-container">
+      <img src={bg} alt="bg" className="overlay-bg" />
+      <div className="login-form-cover">
+        <div className="arrow">
+          <img src={arrow} alt="arrow" />
         </div>
-    )
+        <div className="login-form-container">
+          <h1>
+            Empowering Your Trades: Where <br /> Opportunities Meet Expertise
+          </h1>
+          <h2>Login</h2>
+          <form>
+            <div className="email">
+              <label htmlFor="email">Email</label>
+              <br />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter Email"
+                required
+              />
+            </div>
+            <div className="password">
+              <label htmlFor="password">Password</label>
+              <br />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <div className="check-link-container">
+              <div className="checkbox">
+                <input type="checkbox" name="checkbox" id="checkbox" required />
+                <label htmlFor="checkbox">Keep me logged in</label>
+              </div>
+              <div>
+                <Link to="/forgetPassword" className="link">
+                  Forgot Password?
+                </Link>
+              </div>
+            </div>
+            <div className="submit">
+              <button type="submit">Login</button>
+            </div>
+          </form>
+          <div className="signup-link-container">
+            <span>
+              Don’t have an account?
+              <Link to="/signup" className="sign-link">
+                Signup
+              </Link>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default login;

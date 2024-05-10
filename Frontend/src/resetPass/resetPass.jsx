@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './resetPass.css';
-import bg from '../Images/login_page.png';
+import bg from "../Login/bg.png";
+import arrow from "../Login/arrow.png";
 import { Link } from 'react-router-dom'; 
 import axios from 'axios';
 
@@ -25,7 +26,7 @@ function ResetPass() {
             const response = await axios.post('http://localhost:8000/api/newpassword', { newPassword });
             
             // Redirect to PassSuccess component
-            return <Link to="/PassSuccess">Go to Password Success</Link>;
+            return;
         } catch (error) {
             setError("Something went wrong. Please try again later.");
             console.error('Error:', error);
@@ -33,32 +34,49 @@ function ResetPass() {
     };
 
     return (
-        <div className="login-container">
-            {/* <img src={bg} alt='bg' /> */}
-            <div className="overlay-contant">
-                <h1>Empowering Your Trades: Where <br /> Opportunities Meet Expertise</h1>
-                <p>Reset Your Password?</p>
-                <p id='small'>Enter new Password</p>
-                <div className="form-container">
+        <div className="login-container4">
+            <img src={bg} alt='bg' className="overlay-bg4" />
+            <div className="resetPass-form-cover">
+                    <div className="arrow">
+                        <img src={arrow} alt="arrow" />
+                    </div>
+                <div className="resetPass-form-container">
+                    <h1>Empowering Your Trades: Where <br /> Opportunities Meet Expertise</h1>
+                    <h2>Reset Your Password?</h2>
                     <form onSubmit={handleResetPassword}>
-                        <label>New Password</label>
-                        <div>
-                            <input type="password" placeholder='Enter New Password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required />
+                        <div className="newPass">
+                            <label htmlFor="newPass">New Password</label>
+                            <br />
+                            <input type="password" 
+                            placeholder='Enter New Password' 
+                            value={newPassword} 
+                            name="newPass"
+                            id="newPass"
+                            onChange={(e) => setNewPassword(e.target.value)} 
+                            required />
                         </div>
-                        <label>Confirm Password</label>
-                        <div>
-                            <input type="password" placeholder='Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+                        <div className="confirmPass">
+                            <label htmlFor="confirmPass">Confirm Password</label>
+                            <input type="password"
+                            placeholder='Confirm Password' 
+                            value={confirmPassword}
+                            name="confirmPass"
+                            id="confirmPass" 
+                            onChange={(e) => setConfirmPassword(e.target.value)} 
+                            required />
                         </div>
                         {error && <div className="error">{error}</div>}
-                        <div>
-                            <button type="submit" className="btn">Save</button>
+                        <div className="submit">
+                            <button type="submit"><Link to="/PassSuccess">Save</Link></button>
                         </div>
                     </form>
-                </div>
-                <div className="donthaveacc">
-                    <div>
-                        <span id="account">Don't have an account?</span>
-                        <Link to="/signup" className="signup">Signup</Link>
+                    <div className="signup-link-container">
+                        <span>
+                        Don’t have an account?
+                        <Link to="/signup" className="sign-link">
+                        Signup
+                        </Link>
+                        </span>
                     </div>
                 </div>
             </div>
